@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -18,11 +17,9 @@ func InitServer() (*httprouter.Router, *http.Server) {
 
 	router := httprouter.New()
 	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
+
 	server := http.Server{
-		Addr:    "localhost" + fmt.Sprintf(":%s", port),
+		Addr:    ":" + port,
 		Handler: router,
 	}
 
