@@ -17,9 +17,12 @@ func InitServer() (*httprouter.Router, *http.Server) {
 	}
 
 	router := httprouter.New()
-
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	server := http.Server{
-		Addr:    "localhost" + fmt.Sprintf(":%s", os.Getenv("PORT")),
+		Addr:    "localhost" + fmt.Sprintf(":%s", port),
 		Handler: router,
 	}
 
